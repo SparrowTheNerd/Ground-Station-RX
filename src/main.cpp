@@ -5,7 +5,6 @@
 
 Radio radio;
 
-uint32_t prevTime;
 
 void setup() {
   SerialUSB.begin(); //start serial port
@@ -13,15 +12,10 @@ void setup() {
 
   Wire.begin(uint32_t(PB9_ALT0),uint32_t(PB8_ALT0));
   radio.init();
-
-  prevTime = micros();
 }
 
 void loop() {
   radio.rx();
-  float dT = (micros()-prevTime)/1000000.f;
-  prevTime = micros();
-  Serial.println(dT,6);
 }
 
 void SystemClock_Config(void)

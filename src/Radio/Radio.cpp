@@ -10,6 +10,7 @@
 RHHardwareSPI spi;
 RH_RF95 rf95(CS, INT, spi);
 
+
 void Radio::init() {
   pinMode(PC0, OUTPUT); pinMode(PC1, OUTPUT);
   digitalWrite(PC0, HIGH); digitalWrite(PC1, HIGH); //pull other chip selects high
@@ -22,6 +23,7 @@ void Radio::init() {
   rf95.setFrequency(915.0); //set frequency to 915MHz
   rf95.setTxPower(20,false); //set the transmit power to 20dBm using PA_BOOST
   rf95.setModemConfig(RH_RF95::Bw500Cr45Sf128);
+  Serial.println("Radio initialized");
 }
 
 void Radio::rx() {
@@ -34,6 +36,8 @@ void Radio::rx() {
       buf[len] = 0;
       memcpy(&dataPacket,buf,sizeof(dataPacket));
       Serial.print(dataPacket.tankPrs,5); Serial.print(", "); Serial.print(dataPacket.combnPrs,5); Serial.print(", "); Serial.println(dataPacket.force,5);
+      // Serial.print("RSSI: ");
+      // Serial.println(rf95.lastRssi(), DEC);
 
       } else { Serial.println("Receive failed"); }
   }
