@@ -22,7 +22,7 @@ void Radio::init() {
   rf95.init();
   rf95.setFrequency(915.0); //set frequency to 915MHz
   rf95.setTxPower(20,false); //set the transmit power to 20dBm using PA_BOOST
-  rf95.setModemConfig(RH_RF95::Bw500Cr45Sf128);
+  rf95.setModemConfig(RH_RF95::Bw125Cr45Sf128);
   Serial.println("Radio initialized");
 }
 
