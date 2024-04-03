@@ -20,10 +20,10 @@ void Radio::init() {
   spi.begin();
 
   rf95.init();
-  rf95.setFrequency(915.0); //set frequency to 915MHz
+  rf95.setFrequency(902.5); //set frequency to 915MHz
   rf95.setTxPower(20,false); //set the transmit power to 20dBm using PA_BOOST
   rf95.setModemConfig(RH_RF95::Bw125Cr45Sf128);
-  Serial.println("Radio initialized");
+//   Serial.println("Radio initialized");
 }
 
 void Radio::rx() {
@@ -35,11 +35,13 @@ void Radio::rx() {
       if (!len) return;
       buf[len] = 0;
       memcpy(&dataPacket,buf,sizeof(dataPacket));
-      Serial.print(dataPacket.tankPrs,5); Serial.print(", "); Serial.print(dataPacket.combnPrs,5); Serial.print(", "); Serial.println(dataPacket.force,5);
+      // Serial.print(dataPacket.tankPrs,5); Serial.print(", "); Serial.print(dataPacket.combnPrs,5); Serial.print(", "); Serial.println(dataPacket.force,5);
+      Serial.printf("%.3f,%.3f,%.3f,%.3f\n",dataPacket.tankPrs,dataPacket.combnPrs,dataPacket.force,dataPacket.timeStamp);
       // Serial.print("RSSI: ");
       // Serial.println(rf95.lastRssi(), DEC);
 
-      } else { Serial.println("Receive failed"); }
+      } 
+      // else { Serial.println("Receive failed"); }
   }
 }
 

@@ -7,7 +7,7 @@ public:
     void init();
     void rx();
     struct packet {
-        float tankPrs, combnPrs, force;
+        float tankPrs, combnPrs, force, timeStamp;
     } dataPacket;
 
 private:

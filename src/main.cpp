@@ -7,7 +7,7 @@ Radio radio;
 
 void setup() {
   SerialUSB.begin(); //start serial port
-  while(!SerialUSB);
+  // while(!SerialUSB);
 
   Wire.begin(uint32_t(PB9_ALT0),uint32_t(PB8_ALT0));
   radio.init();
