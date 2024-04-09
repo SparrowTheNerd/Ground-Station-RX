@@ -7,7 +7,8 @@ public:
     void init();
     void rx();
     struct packet {
-        float tankPrs, combnPrs, force, timeStamp;
+        float timeStamp, tankPrs, combnPrs, force;
+        uint8_t status;
     } dataPacket;
 
 private:
