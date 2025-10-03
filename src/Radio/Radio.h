@@ -6,10 +6,13 @@ class Radio {
 public:
     void init();
     void rx();
+    // #pragma pack(push,1)
     struct packet {
         float timeStamp, tankPrs, combnPrs, force;
         uint8_t status;
+        int16_t rssi;
     } dataPacket;
+    // #pragma pack(pop)
 
 private:
     // Private members
